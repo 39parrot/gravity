@@ -1,0 +1,23 @@
+{
+  "name": "gravity",
+  "version": "0.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/39parrot/gravity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/39parrot/gravity/issues"
+  },
+  "homepage": "https://github.com/39parrot/gravity",
+  "dependencies": {
+    "moment": "~2.9.0",
+    "fibrous": "~0.3.3"
+  }
+}
