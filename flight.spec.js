@@ -68,7 +68,7 @@ describe("Flight:", function () {
     //    identity: function() { return <FlightIdentity>}
     //}
 
-    it(".flight() gets JSON responding to ...", function () {
+    it("Flight methods return JSON responding to ...", function () {
         // PRE - make sure at least 1 flight is in the db
         var tmp = Flight.create();
 
@@ -152,8 +152,8 @@ describe("Flight create", function () {
         expect(f._error.code).toBe('FLIGHT_IDENTITY_NOT_COMPLETE');
         // TODO: expect amount of flights not to change
 
-        // Not OK - missing time
-        f = Flight.create({flight_number: 'BLX003', departure_date: '2015-01-29'});
+        // Not OK - can't create a flight without time
+        f = Flight.create({flight_number: 'BLX003', departure_date: 'whatever'});
         expect(f._error.code).not.toBeUndefined(); // TODO: expect an error code
         // TODO: expect amount of flights not to change
 
@@ -163,25 +163,13 @@ describe("Flight create", function () {
         // TODO: expect amount of flights to increase by 1
         Flight.delete(f);
 
-        // Not OK - wrong date
-        f = Flight.create({flight_number: 'BLX005', departure_date: 'asdlfhdsaf'});
-        expect(f._error.code).not.toBeUndefined(); // TODO: expect an error code
-        // TODO: expect amount of flights not to change
-
-
-        // Not OK - wrong date and time
+        // Not OK - invalid date
         f = Flight.create({flight_number: 'BLX006', departure_datetime: '2374564438'});
         expect(f._error.code).not.toBeUndefined(); // TODO: expect an error code
         // TODO: expect amount of flights not to change
 
-        // Not OK - missing time
-        f = Flight.create({departure_date: '2015-01-29'});
-
-        expect(f._error.code).not.toBeUndefined(); // TODO: expect an error code
-        // TODO: expect amount of flights not to change
-
         // OK - flight number gets randomly generated
-        f = Flight.create({departure_datetime: '2015-01-29'});
+        f = Flight.create({departure_datetime: '29 Jan 2015 13:15'});
         expect(f._error.code).toBeUndefined();
         // TODO: expect amount of flights to increase by 1
         Flight.delete(f);
