@@ -9,8 +9,8 @@ beforeEach(function () {
         equalsFlight: function (flight) {
             var actual = this.actual;
             return ((actual.flight_number === flight.flight_number) && !(flight.departure_datetime === undefined) &&
-            (actual.departure_datetime === flight.departure_datetime) && !(flight.arrival_datetime === undefined) &&
-            actual.arrival_datetime === flight.arrival_datetime)
+            (actual.departure_datetime.getTime() === flight.departure_datetime.getTime()) && !(flight.arrival_datetime === undefined) &&
+            actual.arrival_datetime.getTime() === flight.arrival_datetime.getTime())
         }
     };
 
@@ -41,9 +41,9 @@ describe("Flight:", function () {
         var f2 = Flight.find(f1);
         expect(f2.flight_number).toBe(f1.flight_number);
         expect(f2.departure_datetime).not.toBeUndefined();
-        expect(f2.departure_datetime).toBe(f1.departure_datetime);
+        expect(f2.departure_datetime).toEqual(f1.departure_datetime);
         expect(f2.arrival_datetime).not.toBeUndefined();
-        expect(f2.arrival_datetime).toBe(f1.arrival_datetime);
+        expect(f2.arrival_datetime).toEqual(f1.arrival_datetime);
 
         expect(f2).equalsFlight(f1);
 
