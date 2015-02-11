@@ -87,4 +87,38 @@ describe("booking:", function () {
         expect(b1).not.toBeNull();
         expect(b1.booking_number).not.toBeNull();
     });
+
+/*
+    it("Adding some flights to booking", function () {
+        console.log('Adding some flights to booking')
+        // GIVEN
+        // Some flights
+        var f1 = Flight.create();
+        var f2 = Flight.create();
+        var f3 = Flight.create();
+
+        // WHEN
+        var b = Booking.create(
+            {
+                flights: [
+                    {
+                        flight_number: f1.flight_number,
+                        departure_datetime: f1.departure_datetime
+                    }, {
+                        flight_number: f2.flight_number,
+                        departure_datetime: f2.departure_datetime
+                    }, {
+                        flight_number: f3.flight_number,
+                        departure_datetime: f3.departure_datetime
+                    }
+                ]
+            }
+        );
+
+        console.log(b.booking_number);
+
+        //THEN
+        expect(b.flights.length).toBe(3);
+    });*/
 });
+
