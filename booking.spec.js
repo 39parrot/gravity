@@ -115,9 +115,6 @@ describe("booking:", function () {
             }
         );
 
-        console.log(b.booking_number);
-        console.log(b);
-
         //THEN
         expect(b.flights.length).toBe(3);
     });
@@ -136,7 +133,6 @@ describe("booking:", function () {
                 ]
             });
 
-        console.log(b.booking_number);
         expect(b.passengers.length).toBe(3)
     });
 
@@ -156,7 +152,6 @@ describe("booking:", function () {
                 ]
             });
 
-        console.log(b.booking_number);
         expect(b.flights.length).toBe(2);
         expect(b.passengers.length).toBe(3);
     });
