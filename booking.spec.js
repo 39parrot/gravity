@@ -88,7 +88,7 @@ describe("booking:", function () {
         expect(b1.booking_number).not.toBeNull();
     });
 
-/*
+
     it("Adding some flights to booking", function () {
         console.log('Adding some flights to booking')
         // GIVEN
@@ -116,9 +116,49 @@ describe("booking:", function () {
         );
 
         console.log(b.booking_number);
+        console.log(b);
 
         //THEN
         expect(b.flights.length).toBe(3);
-    });*/
+    });
+
+    it("Adding some passengers to booking", function () {
+        // GIVEN
+        // Some flights
+        var f1 = Flight.create();
+
+        //WHEN
+        var b = Booking.create(
+            {
+                flights: [{flight_number: f1.flight_number, departure_datetime: f1.departure_datetime}],
+                passengers: [{firstName: 'Dmitry', lastName: 'Kouznetsov'}, {firstName: 'Ivan', lastName: 'Ivanov'},
+                    {firstName: 'Petr', lastName: 'Petrov'}
+                ]
+            });
+
+        console.log(b.booking_number);
+        expect(b.passengers.length).toBe(3)
+    });
+
+    it("Adding some passengers and some flights to booking", function () {
+        // GIVEN
+        // Some flights
+        var f1 = Flight.create();
+        var f2 = Flight.create();
+
+        //WHEN
+        var b = Booking.create(
+            {
+                flights: [{flight_number: f1.flight_number, departure_datetime: f1.departure_datetime},
+                    {flight_number: f2.flight_number, departure_datetime: f2.departure_datetime}],
+                passengers: [{firstName: 'Dmitry', lastName: 'Kouznetsov'}, {firstName: 'Ivan', lastName: 'Ivanov'},
+                    {firstName: 'Petr', lastName: 'Petrov'}
+                ]
+            });
+
+        console.log(b.booking_number);
+        expect(b.flights.length).toBe(2);
+        expect(b.passengers.length).toBe(3);
+    });
 });
 
