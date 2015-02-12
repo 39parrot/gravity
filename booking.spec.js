@@ -38,7 +38,7 @@ describe("booking:", function () {
         expect(b1.flights.length).toBe(1);
         expect(b1.flights[0].flight_number).toBe(f.flight_number);
         //expect(b1.flights[0].departure_date).toBe(f.departure_date());
-        expect(b1.flights[0].departure_datetime).toBe(f.departure_datetime);
+        expect(b1.flights[0].departure_datetime).toEqual(f.departure_datetime);
 
         // WHEN
         //  retrieving newly created booking by booking_number
@@ -54,7 +54,7 @@ describe("booking:", function () {
         expect(b3.booking_number).toBe('ASDYFASDF');
         expect(b3.flights.length).toBe(1);
         expect(b3.flights[0].flight_number).toBe(f.flight_number);
-        expect(b3.flights[0].departure_datetime).toBe(f.departure_datetime);
+        expect(b3.flights[0].departure_datetime).toEqual(f.departure_datetime);
         expect(b3.passengers.length).toBe(1);
         expect(b3.passengers[0].first_name).not.toBeNull();
 
