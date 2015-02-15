@@ -1,8 +1,5 @@
 var Flight = require('./config.js').Flight;
 var moment = require('moment');
-// TODO: what the heck is this?
-process.setMaxListeners(0);
-
 
 beforeEach(function () {
     var matchers = {

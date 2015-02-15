@@ -1,10 +1,6 @@
 var Flight = require('./config').Flight;
 var Booking = require('./config').Booking;
 
-// TODO: what the heck is this?
-process.setMaxListeners(0);
-
-
 describe("booking:", function () {
 
     it("creating a flight + creating a booking and retrieving the booking", function () {
