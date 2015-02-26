@@ -83,4 +83,67 @@ describe("booking:", function () {
         expect(b1).not.toBeNull();
         expect(b1.booking_number).not.toBeNull();
     });
+
+    it("Find booking with departure date", function () {
+        var f = Flight.create();
+        var f2 = Flight.create();
+
+        var b = Booking.create({
+            flights: [
+                {
+                    flight_number: f.flight_number,
+                    departure_datetime: f.departure_datetime
+                },
+                {
+                    flight_number: f2.flight_number,
+                    departure_datetime: f2.departure_datetime
+                }
+            ],
+            passengers: [
+                {firstName: 'Dmitry', lastName: 'Kouznetsov'},
+                {firstName: 'Ivan', lastName: 'Ivanov'},
+                {firstName: 'Petr', lastName: 'Petrov'}
+            ]
+        });
+
+        var b2 = Booking.find({booking_number: b.booking_number, departure_datetime: f.departure_datetime});
+
+        expect(b2).not.toBeNull();
+
+        expect(true).toBe(function (flights, departure_datetime) {
+            for (var i = 0; i < flights.length; i++) {
+                if (flights[i].departure_datetime.getTime() === departure_datetime.getTime()) {
+                    return true;
+                }
+                return false;
+            }
+        }(b2.flights, f.departure_datetime));
+
+        Flight.delete(f);
+        Flight.delete(f2);
+        Booking.delete(b2);
+    });
+
+    it("Booking.toCM2 returns not null result", function () {
+        var f = Flight.create();
+
+        var b = Booking.create({
+            flights: [
+                {
+                    flight_number: f.flight_number,
+                    departure_datetime: f.departure_datetime
+                }
+            ]
+        });
+
+        //TODO find return more datas than Booking.create()
+        var b2 = Booking.find({booking_number: b.booking_number, departure_datetime: f.departure_datetime});
+        var cm2 = Booking.toCM2([b2]);
+
+        expect(cm2).not.toBeUndefined();
+        expect(cm2).not.toBeNull();
+
+        Flight.delete(f);
+        Booking.delete(b2);
+    })
 });
