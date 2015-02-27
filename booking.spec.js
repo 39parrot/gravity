@@ -1,5 +1,6 @@
 var Flight = require('./config').Flight;
 var Booking = require('./config').Booking;
+var fs = require('fs');
 
 describe("booking:", function () {
 
@@ -83,4 +84,14 @@ describe("booking:", function () {
         expect(b1).not.toBeNull();
         expect(b1.booking_number).not.toBeNull();
     });
+
+    it("FromCM2 fill array of booking", function () {
+        var raw = fs.readFileSync(__dirname + '/booking.cm2', {encoding: 'ascii'});
+        var bookings = Booking.fromCM2(raw);
+
+        expect(bookings).not.toBeNull();
+        expect(bookings).not.toBeUndefined();
+
+        expect(bookings.length).toBe(1);
+    })
 });
