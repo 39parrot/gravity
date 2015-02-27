@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/39parrot/gravity",
   "dependencies": {
-    "moment": "~2.9.0",
-    "fibrous": "~0.3.3"
+    "fibrous": "~0.3.3",
+    "fs": "0.0.2",
+    "moment": "^2.9.0"
   }
 }
